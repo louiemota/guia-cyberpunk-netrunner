@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Netrunner Definitiva. Cyberpunk 2077 (Patch 2.31)</title>
+<style>
+  :root {
+    --yellow: #fcee0a;
+    --cyan: #00f0ff;
+    --red: #ff003c;
+    --bg: #0a0a0f;
+    --panel: #12121a;
+    --panel2: #181824;
+    --text: #d8d8e0;
+    --muted: #8a8a99;
+    --border: #2a2a3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.65;
+  }
+  ::selection { background: var(--yellow); color: #000; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 90px 24px 70px;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(10,10,15,.55) 0%, rgba(10,10,15,.92) 75%, var(--bg) 100%),
+      repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,240,255,.04) 3px 4px),
+      radial-gradient(ellipse at 20% 10%, rgba(252,238,10,.14), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(0,240,255,.12), transparent 50%),
+      #0d0d14;
+    border-bottom: 2px solid var(--yellow);
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(115deg, transparent 0 140px, rgba(255,0,60,.05) 140px 142px);
+    pointer-events: none;
+  }
+  .hero .tag {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 5px 14px;
+    margin-bottom: 22px;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.05;
+    text-shadow: 0 0 28px rgba(252,238,10,.35), 3px 3px 0 rgba(255,0,60,.55);
+  }
+  .hero h1 span { color: var(--cyan); text-shadow: 0 0 28px rgba(0,240,255,.45), 3px 3px 0 rgba(255,0,60,.4); }
+  .hero p.sub {
+    margin-top: 18px;
+    color: var(--text);
+    font-size: 17px;
+    max-width: 680px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero .badges { margin-top: 26px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 14px;
+    text-transform: uppercase;
+    background: rgba(0,240,255,.06);
+  }
+  .badge.y { border-color: var(--yellow); color: var(--yellow); background: rgba(252,238,10,.06); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,15,.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: center; flex-wrap: wrap;
+    padding: 0 12px;
+  }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 14px 14px;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  nav a:hover { color: var(--yellow); border-bottom-color: var(--yellow); }
+
+  /* LAYOUT */
+  main { max-width: 1020px; margin: 0 auto; padding: 24px 24px 80px; }
+  section { margin-top: 64px; scroll-margin-top: 70px; }
+
+  .sec-label {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+  }
+  h2 {
+    color: var(--yellow);
+    font-size: clamp(24px, 3.5vw, 34px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 6px 0 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  h2::after {
+    content: "";
+    position: absolute; left: 0; bottom: -1px;
+    width: 90px; height: 3px;
+    background: var(--cyan);
+  }
+  h3 {
+    color: var(--cyan);
+    font-size: 19px;
+    margin: 34px 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  p { margin: 12px 0; }
+  strong { color: #fff; }
+  em { color: var(--muted); }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow);
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .panel.cyan { border-left-color: var(--cyan); }
+  .panel.red { border-left-color: var(--red); }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    background: var(--panel);
+    font-size: 14.5px;
+  }
+  th {
+    background: var(--panel2);
+    color: var(--yellow);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 2px solid var(--yellow);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(0,240,255,.035); }
+  td.num { color: var(--cyan); font-weight: 800; font-size: 17px; }
+
+  ul, ol { margin: 12px 0 12px 22px; }
+  li { margin: 7px 0; }
+  li::marker { color: var(--cyan); }
+  ol li::marker { color: var(--yellow); font-weight: 700; }
+
+  .kbd {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--cyan);
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-family: monospace;
+    color: var(--cyan);
+    font-size: 13px;
+  }
+  .hl { color: var(--yellow); font-weight: 700; }
+  .pt { color: var(--muted); font-style: italic; }
+
+  /* IMAGES */
+  figure {
+    margin: 22px 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 10px;
+  }
+  figure img {
+    width: 100%;
+    display: block;
+    border: 1px solid #000;
+  }
+  figcaption {
+    color: var(--muted);
+    font-size: 12.5px;
+    text-align: center;
+    padding: 10px 4px 4px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* STEPS */
+  .steps { counter-reset: step; list-style: none; margin-left: 0; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 16px 12px 58px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    margin: 8px 0;
+  }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--red);
+    font-weight: 900;
+    font-size: 19px;
+    font-family: monospace;
+  }
+
+  /* GRID CARDS */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin: 18px 0; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--cyan);
+    padding: 16px 18px;
+  }
+  .card h4 {
+    color: var(--yellow);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .card p, .card li { font-size: 14px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 70px;
+    padding: 36px 24px 50px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  footer a { color: var(--cyan); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+  .glitchline { color: var(--red); font-family: monospace; letter-spacing: 2px; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="tag">Patch 2.31 // PS5 Ready</div>
+  <h1>Build Netrunner<br><span>Definitiva</span></h1>
+  <p class="sub">O guia completo da build de hacker puro em Cyberpunk 2077. Atributos, perks com screenshots reais, cyberware, quickhacks e as rotações que apagam salas inteiras sem disparar um tiro.</p>
+  <div class="badges">
+    <span class="badge y">Inteligência 20</span>
+    <span class="badge">Passado: Corporativo</span>
+    <span class="badge y">Phantom Liberty</span>
+    <span class="badge">Combos de 10K+</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#visao">Visão Geral</a>
+  <a href="#corpo-passado">Corporativo</a>
+  <a href="#atributos">Atributos</a>
+  <a href="#perks">Perks</a>
+  <a href="#cyberware">Cyberware</a>
+  <a href="#quickhacks">Quickhacks</a>
+  <a href="#armas">Armas</a>
+  <a href="#rotacao">Como Jogar</a>
+  <a href="#ps5">PS5</a>
+</nav>
+
+<main>
+
+<section id="visao">
+  <div class="sec-label">// 01</div>
+  <h2>Visão geral da build</h2>
+  <p>O Netrunner é a build de hacker puro: você mata, cega, queima e explode inimigos sem nem sacar a arma, usando <strong>hacks rápidos (quickhacks)</strong> alimentados por RAM. Desde o update 2.0, a mecânica central é a <span class="hl">fila de quickhacks</span>: você empilha vários hacks no mesmo alvo e eles detonam em cadeia, com bônus de dano por combo.</p>
+  <p>O coração da build no late game é o <span class="hl">Overclock</span>, perk final de Inteligência que permite gastar <strong>vida</strong> no lugar de RAM. Com os perks certos, você entra num loop quase infinito de hacks.</p>
+  <div class="grid">
+    <div class="card">
+      <h4>✔ Pontos fortes</h4>
+      <ul>
+        <li>Controle total do campo de batalha</li>
+        <li>Stealth absoluto, ninguém te vê</li>
+        <li>Dano absurdo em área</li>
+        <li>Câmeras e torretas viram aliadas</li>
+        <li>Trivializa chefes</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top-color: var(--red)">
+      <h4>✘ Pontos fracos</h4>
+      <ul>
+        <li>Início de jogo mais lento (pouca RAM)</li>
+        <li>Frágil no corpo a corpo antes dos cyberwares defensivos</li>
+        <li>Depende de visitas frequentes ao ripperdoc</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="corpo-passado">
+  <div class="sec-label">// 02</div>
+  <h2>Passado Corporativo</h2>
+  <div class="panel cyan">
+    <p><strong>Boa notícia:</strong> o passado não afeta em nada os atributos ou a força da build. Pode seguir este guia 100%.</p>
+  </div>
+  <p>O que muda jogando de Corporativo:</p>
+  <ul>
+    <li>A missão de prólogo: você começa na <strong>Arasaka Tower</strong> como agente da contrainteligência.</li>
+    <li>Opções de diálogo exclusivas <span class="kbd">[Corporativo]</span> ao longo do jogo, úteis para manipular executivos, agentes e situações corporativas.</li>
+    <li>Tematicamente é o passado que mais combina com Netrunner: você entende o sistema por dentro.</li>
+  </ul>
+</section>
+
+<section id="atributos">
+  <div class="sec-label">// 03</div>
+  <h2>Atributos</h2>
+
+  <h3>Criação de personagem (7 pontos, máx. 6 por atributo)</h3>
+  <table>
+    <tr><th>Atributo</th><th>Valor inicial</th><th>Pontos gastos</th></tr>
+    <tr><td>Inteligência</td><td class="num">6</td><td>+3</td></tr>
+    <tr><td>Corpo</td><td class="num">6</td><td>+3</td></tr>
+    <tr><td>Habilidade Técnica</td><td class="num">4</td><td>+1</td></tr>
+    <tr><td>Reflexos</td><td class="num">3</td><td>0</td></tr>
+    <tr><td>Frieza</td><td class="num">3</td><td>0</td></tr>
+  </table>
+  <p><em>Inteligência 6 libera os primeiros perks de quickhack imediatamente. Corpo 6 dá sobrevivência cedo (Analgésico). Técnica 4 abre o caminho dos perks de cyberware.</em></p>
+
+  <h3>Distribuição final (nível 60, com Phantom Liberty)</h3>
+  <table>
+    <tr><th>Atributo</th><th>Final</th><th>Função na build</th></tr>
+    <tr><td><strong>Inteligência</strong></td><td class="num">20</td><td>Tudo: RAM, dano de hack, fila, Overclock. Prioridade absoluta.</td></tr>
+    <tr><td><strong>Habilidade Técnica</strong></td><td class="num">20</td><td>Capacidade de cyberware, perk Edgerunner, bônus de chrome.</td></tr>
+    <tr><td><strong>Corpo</strong></td><td class="num">15</td><td>Vida e regeneração. Essencial para sustentar o Overclock, que consome HP.</td></tr>
+    <tr><td><strong>Reflexos</strong></td><td class="num">9</td><td>Dash e mobilidade básica.</td></tr>
+    <tr><td><strong>Frieza</strong></td><td class="num">3-10</td><td>Opcional. Suba para 10 se quiser mais stealth (árvore Ninjutsu).</td></tr>
+  </table>
+
+  <div class="panel">
+    <p><strong>Sem Phantom Liberty (nível 50):</strong> Inteligência 20, Habilidade Técnica 20, Corpo 12 a 15, Reflexos 9, Frieza 3. A lógica é a mesma, só sobram menos pontos.</p>
+  </div>
+  <div class="panel red">
+    <p><strong>Atenção:</strong> o reset de atributos só pode ser feito <strong>uma vez por save</strong>. Escolha a distribuição e siga até o fim. Perks podem ser resetados à vontade.</p>
+  </div>
+
+  <h3>Ordem de evolução</h3>
+  <ol class="steps">
+    <li><strong>Níveis 1 a 15:</strong> Inteligência até 15 primeiro. Pegue Corpo 6 se não pegou na criação.</li>
+    <li><strong>Níveis 15 a 25:</strong> Inteligência 20 (libera Overclock). Depois comece Habilidade Técnica.</li>
+    <li><strong>Níveis 25 a 40:</strong> Habilidade Técnica 20 (libera Edgerunner). Corpo até 15 no caminho.</li>
+    <li><strong>Níveis 40 a 60:</strong> Reflexos 9, resto em Frieza ou Corpo a gosto.</li>
+  </ol>
+</section>
+
+<section id="perks">
+  <div class="sec-label">// 04</div>
+  <h2>Perks por árvore</h2>
+  <p>As imagens abaixo são <strong>screenshots reais</strong> da distribuição final no jogo (patch 2.x). Nomes em inglês com tradução aproximada da localização PT-BR.</p>
+
+  <h3>Inteligência (árvore principal)</h3>
+  <figure>
+    <img src="imagens/01-perks-inteligencia.png" alt="Árvore de perks de Inteligência completa, nível 20">
+    <figcaption>Inteligência 20 // distribuição completa</figcaption>
+  </figure>
+  <div class="grid">
+    <div class="card">
+      <h4>Inteligência 4</h4>
+      <ul>
+        <li>Eye in the Sky <span class="pt">(Olho no Céu)</span></li>
+        <li>Warning: Explosion Hazard</li>
+        <li>Optimization <span class="pt">(Otimização)</span></li>
+        <li>Encryption <span class="pt">(Criptografia)</span></li>
+        <li>Subordination <span class="pt">(opcional)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Inteligência 9</h4>
+      <ul>
+        <li><span class="hl">Embedded Exploit</span>: chave da build, mais dano em alvos com hack de controle ativo</li>
+        <li>ICEpick</li>
+        <li><span class="hl">Hack Queue</span>: libera a fila, essencial</li>
+        <li><span class="hl">Recirculation</span>: recupera RAM ao matar com arma smart</li>
+        <li>System Overwhelm, Speculation, Acquisition Specialist, Precision Subroutines, Data Recycler, Feedback Loop, Counter-a-hack</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Inteligência 15</h4>
+      <ul>
+        <li><span class="hl">Overclock</span>: o perk mais importante. Hackeia gastando vida quando a RAM acaba</li>
+        <li><span class="hl">Blood Daemon</span>: recupera HP ao matar com quickhack, sustenta o Overclock</li>
+        <li>Queue Acceleration 3/3</li>
+        <li>Sublimation, Race Against Mind, Power Surge, Queue Hack_Root, Queue Prioritization, Target Lock Transfer</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Inteligência 20</h4>
+      <ul>
+        <li><span class="hl">Queue Mastery</span>: dano aumenta a cada hack na fila do alvo. É daqui que saem os combos de 10K+</li>
+        <li><span class="hl">Smart Synergy</span>: armas smart travam mira instantaneamente durante o Overclock</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Corpo (sobrevivência)</h3>
+  <figure>
+    <img src="imagens/02-perks-corpo.png" alt="Árvore de perks de Corpo">
+    <figcaption>Corpo 15 // sobrevivência para sustentar o Overclock</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Corpo 4:</strong> Painkiller <span class="pt">(Analgésico)</span>, Dorph-head</li>
+    <li><strong>Corpo 15:</strong> Adrenaline Rush 2/2, Juggernaut, Calm Mind</li>
+  </ul>
+  <p><em>Por que importa: o Overclock consome HP. Mais vida e regeneração = mais hacks de graça.</em></p>
+
+  <h3>Habilidade Técnica (cyberware)</h3>
+  <figure>
+    <img src="imagens/03-perks-habilidade-tecnica.png" alt="Árvore de perks de Habilidade Técnica">
+    <figcaption>Habilidade Técnica 20 // rumo ao Edgerunner</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Técnica 4:</strong> Glutton for War</li>
+    <li><strong>Técnica 9:</strong> All Things Cyber, Renaissance Punk, Chrome Constitution, Health Freak 2/2, Borrowed Time</li>
+    <li><strong>Técnica 15:</strong> License to Chrome 3/3, Extended Warranty. Opcionais: Cyborg, Pyromania, Heat Shield</li>
+    <li><strong>Técnica 20:</strong> <span class="hl">Edgerunner</span>: capacidade de cyberware acima do limite e buff ao ativar Overclock. Opcional: Ticking Time Bomb</li>
+  </ul>
+
+  <h3>Reflexos (mobilidade)</h3>
+  <figure>
+    <img src="imagens/04-perks-reflexos.png" alt="Árvore de perks de Reflexos">
+    <figcaption>Reflexos 9 // mobilidade essencial</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Reflexos 4:</strong> Slippery, Muscle Memory</li>
+    <li><strong>Reflexos 9:</strong> <span class="hl">Dash</span>, Can't Touch This</li>
+  </ul>
+
+  <h3>Relíquia (só com Phantom Liberty)</h3>
+  <figure>
+    <img src="imagens/05-perks-reliquia.png" alt="Árvore de perks de Relíquia">
+    <figcaption>Relíquia // Phantom Liberty</figcaption>
+  </figure>
+  <ol>
+    <li><span class="hl">Vulnerability Analytics</span>: revela pontos fracos que dão crítico garantido</li>
+    <li><span class="hl">Machine Learning</span>: detectar vulnerabilidades aumenta chance e dano crítico</li>
+  </ol>
+  <p><em>O resto dos pontos de Relíquia vai em Emergency Cloaking (camuflagem) ou nos perks de braço a gosto.</em></p>
+</section>
+
+<section id="cyberware">
+  <div class="sec-label">// 05</div>
+  <h2>Cyberware</h2>
+  <div class="panel">
+    <p><strong>Regra de ouro:</strong> visite o ripperdoc a cada ~10 níveis. Os cyberwares sobem de tier com seu nível e a diferença é brutal.</p>
+  </div>
+
+  <h3>Sistema operacional (o coração da build)</h3>
+  <table>
+    <tr><th>Cyberdeck</th><th>Quando usar</th></tr>
+    <tr><td><strong>Tetratronic Rippler Mk.5</strong></td><td><span class="hl">Recomendado.</span> Maior dano de combo. Upload automático de Reboot Optics e Weapon Glitch ao ativar Overclock.</td></tr>
+    <tr><td>Netwatch Netdriver Mk.1</td><td>Alternativa para quem joga muito via câmeras (hacks em área via câmera).</td></tr>
+    <tr><td>Militech Paraline</td><td>Se quiser focar em armas smart.</td></tr>
+  </table>
+
+  <h3>Prioridade 1 (compre primeiro)</h3>
+  <table>
+    <tr><th>Slot</th><th>Cyberware</th><th>Efeito</th></tr>
+    <tr><td>Córtex Frontal 1</td><td><strong>COX-2 Cybersomatic Optimizer</strong></td><td>Crítico garantido em quickhacks. Caro, mas transforma a build.</td></tr>
+    <tr><td>Córtex Frontal 2</td><td><strong>Ex-Disk</strong></td><td>+5 RAM máx e +30% velocidade de upload.</td></tr>
+    <tr><td>Rosto</td><td>Kiroshi "Sentry" Optics</td><td>Dano baseado em Inteligência.</td></tr>
+    <tr><td>Mãos</td><td>Smart Link</td><td>Mira automática de armas smart.</td></tr>
+    <tr><td>Circulatório 1</td><td>Biomonitor</td><td>Cura automática em combate.</td></tr>
+    <tr><td>Circulatório 2</td><td>Blood Pump</td><td>Melhor item de cura do jogo.</td></tr>
+    <tr><td>Esqueleto 1</td><td>Spring Joints</td><td>Mitigação.</td></tr>
+    <tr><td>Sistema Nervoso 1</td><td>Neofiber</td><td>Chance de mitigação.</td></tr>
+    <tr><td>Tegumentar 1</td><td>Countershell</td><td>+50% força de mitigação.</td></tr>
+    <tr><td>Pernas</td><td>Reinforced Tendons</td><td>Pulo duplo. Movimentação e rotas de stealth.</td></tr>
+  </table>
+
+  <h3>Prioridade 2 (meio de jogo)</h3>
+  <ul>
+    <li>Córtex Frontal 3: <strong>Axolotl</strong> (reduz cooldowns, incluindo Overclock) ou Newton Module</li>
+    <li>Esqueleto 2: Epimorphic Skeleton (vida e armadura)</li>
+    <li>Sistema Nervoso 2: Reflex Tuner ou Revulsor (salva-vidas com HP baixo)</li>
+    <li>Tegumentar 2: Shock-N-Awe ou Painducer</li>
+    <li>Tegumentar 3: Cogito Lattice ou <strong>Optical Camo</strong> (camuflagem ótica, stealth total)</li>
+  </ul>
+
+  <h3>Prioridade 3 (final de jogo)</h3>
+  <ul>
+    <li>Esqueleto 3: Kinetic Frame ou Bionic Joints</li>
+    <li>Sistema Nervoso 3: Deep-Field Visual Interface ou Synaptic Accelerator</li>
+    <li>Circulatório 3: <strong>Second Heart</strong> (segunda chance ao morrer) ou Heal-On-Kill</li>
+    <li>Braços: <strong>Monowire Térmico</strong> (opcional, recupera RAM e combina com a variante corpo a corpo)</li>
+  </ul>
+</section>
+
+<section id="quickhacks">
+  <div class="sec-label">// 06</div>
+  <h2>Quickhacks</h2>
+  <p>Carregue sempre os tiers mais altos que encontrar. Os essenciais:</p>
+  <table>
+    <tr><th>Quickhack</th><th>PT-BR aproximado</th><th>Uso</th></tr>
+    <tr><td><strong>Cyberware Malfunction</strong></td><td>Defeito no Cyberware</td><td>Hack de controle que ativa o Embedded Exploit. Abre TODO combo.</td></tr>
+    <tr><td><strong>Synapse Burnout</strong></td><td>Colapso de Sinapse</td><td>Dano pesado. No tier alto, matar com ele <span class="hl">estende o Overclock</span>.</td></tr>
+    <tr><td><strong>Short Circuit</strong></td><td>Curto-Circuito</td><td>Dano elétrico alto, escala com stacks de Malfunction.</td></tr>
+    <tr><td><strong>Contagion</strong></td><td>Contágio</td><td>Veneno que se espalha. Detona com dano de fogo.</td></tr>
+    <tr><td><strong>Overheat</strong></td><td>Superaquecimento</td><td>Queimadura + reduz armadura.</td></tr>
+    <tr><td><strong>Reboot Optics</strong></td><td>Reiniciar Óptica</td><td>Cega o inimigo. Defesa e setup de headshot.</td></tr>
+    <tr><td><strong>Sonic Shock</strong></td><td>Choque Sônico</td><td>Tier 4+: isola o alvo da rede. Essencial para stealth.</td></tr>
+    <tr><td><strong>Memory Wipe</strong></td><td>Apagar Memória</td><td>Tier 4+: cancela o rastreamento (trace). Seguro de vida do stealth.</td></tr>
+    <tr><td><strong>Ping</strong></td><td>Ping</td><td>Revela inimigos através de paredes. Use no início de toda área.</td></tr>
+    <tr><td><strong>Detonate Grenade</strong></td><td>Detonar Granada</td><td>Hack supremo (ultimate) para fechar combos.</td></tr>
+  </table>
+</section>
+
+<section id="armas">
+  <div class="sec-label">// 07</div>
+  <h2>Armas (para quando a RAM acabar)</h2>
+  <div class="panel cyan">
+    <p>Com o perk <strong>Recirculation</strong>, cada kill com arma smart devolve RAM. Sinergia perfeita.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h4>SMGs Smart</h4>
+      <ul>
+        <li><span class="hl">Yinglong</span>: a melhor, dispara EMP</li>
+        <li>Pizdets: silenciada (Phantom Liberty)</li>
+        <li>Warden: pente grande</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Pistolas Smart</h4>
+      <ul>
+        <li><span class="hl">Genjiroh</span>: multi-alvo</li>
+        <li>Crimestopper: cadência alta</li>
+        <li>Ogou: penetração de armadura</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Snipers e icônicas</h4>
+      <ul>
+        <li><span class="hl">Ashura</span>: sniper smart, dano absurdo</li>
+        <li>Yasha: slot extra de mod</li>
+        <li>Prototype: Shingen Mark V: SMG smart com munição explosiva</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="rotacao">
+  <div class="sec-label">// 08</div>
+  <h2>Como jogar (rotações)</h2>
+
+  <h3>Início de jogo (níveis 1 a 20)</h3>
+  <ol class="steps">
+    <li><strong>Ping</strong> na primeira pessoa ou dispositivo da área para mapear todo mundo.</li>
+    <li>Stealth: Reboot Optics + Short Circuit em alvos isolados.</li>
+    <li>Combate: Cyberware Malfunction, depois Short Circuit.</li>
+    <li>Use pistola e granada como apoio, a RAM ainda é curta.</li>
+  </ol>
+
+  <h3>Final de jogo (nível 30+): o loop infinito de Overclock</h3>
+  <ol class="steps">
+    <li>Ative o <span class="hl">Overclock</span>.</li>
+    <li>Suba <strong>Cyberware Malfunction</strong> (ativa o Embedded Exploit).</li>
+    <li>Suba <strong>Synapse Burnout</strong> (kills estendem o Overclock).</li>
+    <li>Encadeie Cyberware Malfunction nos próximos alvos. O <strong>Blood Daemon</strong> devolve o HP que o Overclock consome.</li>
+    <li>Repita até a sala inteira apagar. Com Queue Mastery, o último hack da fila bate com dano multiplicado.</li>
+  </ol>
+
+  <div class="grid">
+    <div class="card">
+      <h4>Dano máximo (elites/chefes)</h4>
+      <p>Cyberware Malfunction → Synapse Burnout → Cyberware Malfunction → hack supremo (Detonate Grenade ou Suicide).</p>
+    </div>
+    <div class="card">
+      <h4>Stealth total</h4>
+      <p>Memory Wipe (Tier 4+) → Reboot Optics → Sonic Shock (Tier 5). Ninguém nunca soube que você esteve lá.</p>
+    </div>
+    <div class="card">
+      <h4>Área clássico</h4>
+      <p>Contagion em um grupo → Overheat no infectado central → explosão em cadeia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ps5">
+  <div class="sec-label">// 09</div>
+  <h2>Dicas específicas de PS5</h2>
+  <ul>
+    <li>Segure <span class="kbd">L1</span> para abrir o scanner e a roda de quickhacks. A ordem da fila segue a ordem em que você seleciona os hacks.</li>
+    <li>Ative a legenda de dano nas opções para acompanhar os combos.</li>
+    <li>O patch 2.31 trouxe melhorias para PS5 Pro e o AutoDrive aprimorado. Aproveite para farmar gigs enquanto o carro dirige.</li>
+    <li>Visite o ripperdoc a cada 10 níveis para subir o tier dos cyberwares.</li>
+    <li>Evite o perk <strong>Spillover</strong> se quiser controle fino da fila (ele espalha hacks sem você pedir).</li>
+  </ul>
+
+  <h3>Cola rápida (resumo de prioridades)</h3>
+  <ol class="steps">
+    <li>Inteligência 20 → Overclock + Queue Mastery</li>
+    <li>Habilidade Técnica 20 → Edgerunner</li>
+    <li>Corpo 15 → Analgésico + Adrenalina</li>
+    <li>Cyberdeck Tetratronic Rippler Mk.5</li>
+    <li>COX-2 + Ex-Disk + Blood Pump</li>
+    <li>Quickhacks: Cyberware Malfunction, Synapse Burnout, Short Circuit, Memory Wipe</li>
+    <li>Arma smart com Recirculation para emergências</li>
+    <li>Relíquia: Vulnerability Analytics + Machine Learning</li>
+  </ol>
+</section>
+
+</main>
+
+<footer>
+  <div class="glitchline">// WAKE UP, SAMURAI. WE HAVE A CITY TO HACK //</div>
+  <p>Fontes:
+    <a href="https://gamestegy.com/post/cyberpunk-2077/698/netrunner-build" target="_blank">Gamestegy</a> ·
+    <a href="https://game8.co/games/Cyberpunk-2077/archives/Builds-Netrunner" target="_blank">Game8</a> ·
+    <a href="https://www.cyberpunk.net/en/news/51674/update-2-3-patch-notes" target="_blank">Patch Notes 2.3</a> ·
+    <a href="https://www.cyberpunk.net/en/news/51794/patch-2-31" target="_blank">Patch 2.31</a>
+  </p>
+  <p style="margin-top:10px">Imagens: screenshots reais das árvores de perks (Gamestegy). Nomes PT-BR aproximados, a referência segura é o nome em inglês.</p>
+</footer>
+
+</body>
+</html>
