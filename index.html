@@ -388,10 +388,43 @@
   #totop:hover { background: rgba(0,240,255,.12); }
   #totop.show { display: flex; }
 
+  /* RESPONSIVO MOBILE: tabelas densas viram cards empilhados */
+  @media (max-width: 640px) {
+    .rtable { min-width: 0; font-size: 14px; }
+    .rtable, .rtable tbody { display: block; }
+    .rtable tr { display: block; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--cyan); margin-bottom: 12px; }
+    .rtable tr:first-child { display: none; } /* esconde o cabeçalho */
+    .rtable tr:hover td { background: transparent; }
+    .rtable td { display: block; padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .rtable td:last-child { border-bottom: none; }
+    .rtable td::before {
+      content: attr(data-label);
+      display: block;
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .rtable td.num { font-size: 18px; }
+    .rtable td img.ico { vertical-align: -6px; }
+
+    /* checkboxes de arma: imagem no topo, texto em largura total */
+    label.chk.weapon { flex-wrap: wrap; align-items: center; }
+    label.chk.weapon img.wpimg { width: auto; max-width: calc(100% - 40px); height: 58px; }
+    label.chk.weapon span.t { flex-basis: 100%; }
+  }
+
   @media (max-width: 480px) {
     .hero { padding: 64px 18px 56px; }
     main { padding: 18px 16px 70px; }
     .tracker { margin: -26px 12px 0; }
+    h3 { font-size: 16px; }
+    .timeline > li { padding-left: 50px; }
+    .steps li { padding-left: 50px; }
+    label.chk { padding: 10px 10px; }
+    label.chk span.t { font-size: 14px; }
   }
 </style>
 </head>
@@ -479,25 +512,25 @@
 
   <h3>Criação de personagem (7 pontos, máx. 6 por atributo)</h3>
   <div class="tablewrap">
-  <table>
+  <table class="rtable">
     <tr><th>Atributo</th><th>Valor inicial</th><th>Pontos gastos</th></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-inteligencia.png" alt="" loading="lazy">Inteligência</td><td class="num">6</td><td>+3</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-corpo.png" alt="" loading="lazy">Corpo</td><td class="num">6</td><td>+3</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-tecnica.png" alt="" loading="lazy">Habilidade Técnica</td><td class="num">4</td><td>+1</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-reflexos.png" alt="" loading="lazy">Reflexos</td><td class="num">3</td><td>0</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-frieza.png" alt="" loading="lazy">Frieza</td><td class="num">3</td><td>0</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-inteligencia.png" alt="" loading="lazy">Inteligência</td><td class="num" data-label="Inicial">6</td><td data-label="Pontos gastos">+3</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-corpo.png" alt="" loading="lazy">Corpo</td><td class="num" data-label="Inicial">6</td><td data-label="Pontos gastos">+3</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-tecnica.png" alt="" loading="lazy">Habilidade Técnica</td><td class="num" data-label="Inicial">4</td><td data-label="Pontos gastos">+1</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-reflexos.png" alt="" loading="lazy">Reflexos</td><td class="num" data-label="Inicial">3</td><td data-label="Pontos gastos">0</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-frieza.png" alt="" loading="lazy">Frieza</td><td class="num" data-label="Inicial">3</td><td data-label="Pontos gastos">0</td></tr>
   </table>
   </div>
 
   <h3>Distribuição final (nível 60, com Phantom Liberty)</h3>
   <div class="tablewrap">
-  <table>
+  <table class="rtable">
     <tr><th>Atributo</th><th>Final</th><th>Função na build</th></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-inteligencia.png" alt="" loading="lazy"><strong>Inteligência</strong></td><td class="num">20</td><td>Tudo: RAM, dano de hack, sequência, Turbinagem. Prioridade absoluta.</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-tecnica.png" alt="" loading="lazy"><strong>Habilidade Técnica</strong></td><td class="num">20</td><td>Capacidade de cibernética, vantagem Edgerunner, bônus de chrome.</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-corpo.png" alt="" loading="lazy"><strong>Corpo</strong></td><td class="num">15</td><td>Vida e regeneração. Essencial para sustentar a Turbinagem, que consome HP.</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-reflexos.png" alt="" loading="lazy"><strong>Reflexos</strong></td><td class="num">9</td><td>Avanço e mobilidade básica.</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/at-frieza.png" alt="" loading="lazy"><strong>Frieza</strong></td><td class="num">3-10</td><td>Opcional. Suba para 10 se quiser mais stealth (árvore Ninjutsu).</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-inteligencia.png" alt="" loading="lazy"><strong>Inteligência</strong></td><td class="num" data-label="Final">20</td><td data-label="Função">Tudo: RAM, dano de hack, sequência, Turbinagem. Prioridade absoluta.</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-tecnica.png" alt="" loading="lazy"><strong>Habilidade Técnica</strong></td><td class="num" data-label="Final">20</td><td data-label="Função">Capacidade de cibernética, vantagem Edgerunner, bônus de chrome.</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-corpo.png" alt="" loading="lazy"><strong>Corpo</strong></td><td class="num" data-label="Final">15</td><td data-label="Função">Vida e regeneração. Essencial para sustentar a Turbinagem, que consome HP.</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-reflexos.png" alt="" loading="lazy"><strong>Reflexos</strong></td><td class="num" data-label="Final">9</td><td data-label="Função">Avanço e mobilidade básica.</td></tr>
+    <tr><td data-label="Atributo"><img class="ico" src="imagens/icones/at-frieza.png" alt="" loading="lazy"><strong>Frieza</strong></td><td class="num" data-label="Final">3-10</td><td data-label="Função">Opcional. Suba para 10 se quiser mais stealth (árvore Ninjutsu).</td></tr>
   </table>
   </div>
 
@@ -684,38 +717,38 @@
   <h3>Melhor cibernética por faixa de nível</h3>
   <p>O que comprar em cada visita ao ripperdoc, na ordem que dá mais retorno por eddie gasto:</p>
   <div class="tablewrap">
-  <table>
+  <table class="rtable">
     <tr><th>Faixa</th><th>Tier liberado</th><th>Compras prioritárias (em ordem)</th></tr>
     <tr>
-      <td class="num">Nv 1-9</td><td>Tier 1</td>
-      <td><strong>1.</strong> Biomonitor <strong>2.</strong> Smart Link <strong>3.</strong> ciberdeque melhor que o inicial, o que tiver. <em>Não gaste muito aqui: priorize eddies pra hacks rápidos Tier 2.</em></td>
+      <td class="num" data-label="Faixa">Nv 1-9</td><td data-label="Tier liberado">Tier 1</td>
+      <td data-label="Compras prioritárias"><strong>1.</strong> Biomonitor <strong>2.</strong> Smart Link <strong>3.</strong> ciberdeque melhor que o inicial, o que tiver. <em>Não gaste muito aqui: priorize eddies pra hacks rápidos Tier 2.</em></td>
     </tr>
     <tr>
-      <td class="num">Nv 10-19</td><td>Tier 2</td>
-      <td><strong>1.</strong> Ex-Disk (RAM é seu maior gargalo agora) <strong>2.</strong> ciberdeque Tier 2 (Rippler Mk.2) <strong>3.</strong> Blood Pump <strong>4.</strong> Reinforced Tendons.</td>
+      <td class="num" data-label="Faixa">Nv 10-19</td><td data-label="Tier liberado">Tier 2</td>
+      <td data-label="Compras prioritárias"><strong>1.</strong> Ex-Disk (RAM é seu maior gargalo agora) <strong>2.</strong> ciberdeque Tier 2 (Rippler Mk.2) <strong>3.</strong> Blood Pump <strong>4.</strong> Reinforced Tendons.</td>
     </tr>
     <tr>
-      <td class="num">Nv 20-29</td><td>Tier 3</td>
-      <td><strong>1.</strong> Rippler Mk.3 (ou Netdriver se preferir câmeras) <strong>2.</strong> Kiroshi "Sentry" Optics <strong>3.</strong> trio defensivo: Spring Joints, Neofiber, Countershell <strong>4.</strong> Optical Camo se sobrar grana.</td>
+      <td class="num" data-label="Faixa">Nv 20-29</td><td data-label="Tier liberado">Tier 3</td>
+      <td data-label="Compras prioritárias"><strong>1.</strong> Rippler Mk.3 (ou Netdriver se preferir câmeras) <strong>2.</strong> Kiroshi "Sentry" Optics <strong>3.</strong> trio defensivo: Spring Joints, Neofiber, Countershell <strong>4.</strong> Optical Camo se sobrar grana.</td>
     </tr>
     <tr>
-      <td class="num">Nv 30-39</td><td>Tier 4</td>
-      <td><strong>1.</strong> Rippler Mk.4 <strong>2.</strong> Axolotl <strong>3.</strong> Epimorphic Skeleton <strong>4.</strong> Reflex Tuner <strong>5.</strong> upgrade geral do resto pra Tier 4 no ripperdoc.</td>
+      <td class="num" data-label="Faixa">Nv 30-39</td><td data-label="Tier liberado">Tier 4</td>
+      <td data-label="Compras prioritárias"><strong>1.</strong> Rippler Mk.4 <strong>2.</strong> Axolotl <strong>3.</strong> Epimorphic Skeleton <strong>4.</strong> Reflex Tuner <strong>5.</strong> upgrade geral do resto pra Tier 4 no ripperdoc.</td>
     </tr>
     <tr>
-      <td class="num">Nv 40+</td><td>Tier 5</td>
-      <td><strong>1.</strong> Rippler Mk.5 <strong>2.</strong> COX-2 em Dogtown (a compra mais importante da build) <strong>3.</strong> Ex-Disk Tier 5 <strong>4.</strong> Second Heart <strong>5.</strong> upgrades 5+ e 5++ em tudo.</td>
+      <td class="num" data-label="Faixa">Nv 40+</td><td data-label="Tier liberado">Tier 5</td>
+      <td data-label="Compras prioritárias"><strong>1.</strong> Rippler Mk.5 <strong>2.</strong> COX-2 em Dogtown (a compra mais importante da build) <strong>3.</strong> Ex-Disk Tier 5 <strong>4.</strong> Second Heart <strong>5.</strong> upgrades 5+ e 5++ em tudo.</td>
     </tr>
   </table>
   </div>
 
   <h3>Sistema operacional (o coração da build)</h3>
   <div class="tablewrap">
-  <table>
+  <table class="rtable">
     <tr><th>Ciberdeque</th><th>Onde obter</th><th>Quando usar</th></tr>
-    <tr><td><img class="ico" src="imagens/icones/cw-tetratronic-rippler.png" alt="" loading="lazy"><strong>Tetratronic Rippler Mk.5</strong></td><td class="loc">Qualquer ripperdoc, nível 40 (Mk.4 no nível 30)</td><td><span class="hl">Recomendado.</span> Maior dano de combo. Upload automático de Reiniciar Ópticas e Travar Arma ao ativar a Turbinagem.</td></tr>
-    <tr><td><img class="ico" src="imagens/icones/cw-netwatch-netdriver.png" alt="" loading="lazy">NetWatch Netdriver Mk.1</td><td class="loc">Qualquer ripperdoc, nível alto</td><td>Alternativa para hacks em área via câmeras.</td></tr>
-    <tr><td>Militech Paraline</td><td class="loc">Qualquer ripperdoc</td><td>Se quiser focar em armas smart.</td></tr>
+    <tr><td data-label="Ciberdeque"><img class="ico" src="imagens/icones/cw-tetratronic-rippler.png" alt="" loading="lazy"><strong>Tetratronic Rippler Mk.5</strong></td><td class="loc" data-label="Onde obter">Qualquer ripperdoc, nível 40 (Mk.4 no nível 30)</td><td data-label="Quando usar"><span class="hl">Recomendado.</span> Maior dano de combo. Upload automático de Reiniciar Ópticas e Travar Arma ao ativar a Turbinagem.</td></tr>
+    <tr><td data-label="Ciberdeque"><img class="ico" src="imagens/icones/cw-netwatch-netdriver.png" alt="" loading="lazy">NetWatch Netdriver Mk.1</td><td class="loc" data-label="Onde obter">Qualquer ripperdoc, nível alto</td><td data-label="Quando usar">Alternativa para hacks em área via câmeras.</td></tr>
+    <tr><td data-label="Ciberdeque">Militech Paraline</td><td class="loc" data-label="Onde obter">Qualquer ripperdoc</td><td data-label="Quando usar">Se quiser focar em armas smart.</td></tr>
   </table>
   </div>
 
@@ -777,11 +810,11 @@
     <p>Com a vantagem <strong>Recirculação</strong>, cada kill com arma smart devolve RAM. Sinergia perfeita pra quando a barra zerar.</p>
   </div>
   <p class="chk-note">// Checklist de obtenção</p>
-  <label class="chk"><input type="checkbox" data-id="wp-shingen"><img class="wpimg" src="imagens/icones/wp-shingen.png" alt="SMG smart Prototype Shingen Mark V" loading="lazy"><span class="t"><strong>Prototype: Shingen Mark V</strong> (SMG smart, projéteis explosivos, 3 alvos). <span class="loc">GRÁTIS: contêiner 667, doca externa do Arasaka Industrial Park, Santo Domingo. Entre pelo portão principal, primeira à esquerda, direita depois do prédio. Cuidado com a mina na entrada do contêiner. Não precisa de missão ativa</span></span></label>
-  <label class="chk"><input type="checkbox" data-id="wp-genjiroh"><img class="wpimg" src="imagens/icones/wp-genjiroh.png" alt="Pistola smart Genjiroh" loading="lazy"><span class="t"><strong>Genjiroh</strong> (pistola smart, multi-alvo). <span class="loc">Durante a missão "Pela porta da frente" (Play It Safe, Japantown): no andar 21, porta à direita saindo do elevador, código 2906. Também abre com Habilidade Técnica alta</span></span></label>
-  <label class="chk"><input type="checkbox" data-id="wp-yinglong"><img class="wpimg" src="imagens/icones/wp-yinglong.png" alt="SMG smart Yinglong" loading="lazy"><span class="t"><strong>Yinglong</strong> (SMG smart, dispara EMP). <span class="loc">Spec de criação: drop do líder em "Atividade Suspeita de Crime Organizado" em Wellsprings, Heywood (Denzel Cryer). Depois crie na aba de criação</span></span></label>
-  <label class="chk"><input type="checkbox" data-id="wp-pizdets"><img class="wpimg" src="imagens/icones/wp-pizdets.png" alt="SMG smart Pizdets" loading="lazy"><span class="t"><strong>Pizdets</strong> (SMG smart com silenciador, crítico cresce atirando). <span class="loc">Phantom Liberty: drop do Boris Ribakov no gig "Spy in the Jungle", museu de história natural, Terra Cognita, Dogtown</span></span></label>
-  <label class="chk"><input type="checkbox" data-id="wp-ashura"><img class="wpimg" src="imagens/icones/wp-ashura.png" alt="Sniper smart Ashura" loading="lazy"><span class="t"><strong>Ashura</strong> (sniper smart, dano absurdo). <span class="loc">Lojas de armas de Night City em nível alto, ou drop raro de inimigos</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-shingen"><img class="wpimg" src="imagens/icones/wp-shingen.png" alt="SMG smart Prototype Shingen Mark V" loading="lazy"><span class="t"><strong>Prototype: Shingen Mark V</strong> (SMG smart, projéteis explosivos, 3 alvos). <span class="loc">GRÁTIS: contêiner 667, doca externa do Arasaka Industrial Park, Santo Domingo. Entre pelo portão principal, primeira à esquerda, direita depois do prédio. Cuidado com a mina na entrada do contêiner. Não precisa de missão ativa</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-genjiroh"><img class="wpimg" src="imagens/icones/wp-genjiroh.png" alt="Pistola smart Genjiroh" loading="lazy"><span class="t"><strong>Genjiroh</strong> (pistola smart, multi-alvo). <span class="loc">Durante a missão "Pela porta da frente" (Play It Safe, Japantown): no andar 21, porta à direita saindo do elevador, código 2906. Também abre com Habilidade Técnica alta</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-yinglong"><img class="wpimg" src="imagens/icones/wp-yinglong.png" alt="SMG smart Yinglong" loading="lazy"><span class="t"><strong>Yinglong</strong> (SMG smart, dispara EMP). <span class="loc">Spec de criação: drop do líder em "Atividade Suspeita de Crime Organizado" em Wellsprings, Heywood (Denzel Cryer). Depois crie na aba de criação</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-pizdets"><img class="wpimg" src="imagens/icones/wp-pizdets.png" alt="SMG smart Pizdets" loading="lazy"><span class="t"><strong>Pizdets</strong> (SMG smart com silenciador, crítico cresce atirando). <span class="loc">Phantom Liberty: drop do Boris Ribakov no gig "Spy in the Jungle", museu de história natural, Terra Cognita, Dogtown</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-ashura"><img class="wpimg" src="imagens/icones/wp-ashura.png" alt="Sniper smart Ashura" loading="lazy"><span class="t"><strong>Ashura</strong> (sniper smart, dano absurdo). <span class="loc">Lojas de armas de Night City em nível alto, ou drop raro de inimigos</span></span></label>
 </section>
 
 <section id="rotacao">
