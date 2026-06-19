@@ -238,6 +238,45 @@
   .hl { color: var(--yellow); font-weight: 700; }
   .en { color: var(--muted); font-style: italic; font-size: .92em; }
   .loc { color: var(--green); font-family: var(--mono); font-size: 13px; }
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.035);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+  }
+  .pill.y { border-color: var(--yellow); color: var(--yellow); background: rgba(252,238,10,.06); }
+  .pill.c { border-color: var(--cyan); color: var(--cyan); background: rgba(0,240,255,.06); }
+  .pill.g { border-color: var(--green); color: var(--green); background: rgba(45,212,167,.06); }
+  .combo {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .combo strong:first-child {
+    display: block;
+    color: var(--yellow);
+    font-family: var(--head);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .combo code {
+    display: block;
+    white-space: normal;
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+  }
 
   /* ÍCONES DO JOGO */
   img.ico { width: 30px; height: 30px; object-fit: contain; flex: none; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(0,240,255,.25)); }
@@ -747,9 +786,33 @@
   <table class="rtable">
     <tr><th>Ciberdeque</th><th>Onde obter</th><th>Quando usar</th></tr>
     <tr><td data-label="Ciberdeque"><img class="ico" src="imagens/icones/cw-tetratronic-rippler.png" alt="" loading="lazy"><strong>Tetratronic Rippler Mk.5</strong></td><td class="loc" data-label="Onde obter">Qualquer ripperdoc, nível 40 (Mk.4 no nível 30)</td><td data-label="Quando usar"><span class="hl">Recomendado.</span> Maior dano de combo. Upload automático de Reiniciar Ópticas e Travar Arma ao ativar a Turbinagem.</td></tr>
+    <tr><td data-label="Ciberdeque"><strong>Raven Microcyber Mk.3</strong></td><td class="loc" data-label="Onde obter">Qualquer ripperdoc, nível alto</td><td data-label="Quando usar">Variante para limpar grupos rápido com Contágio, Superaquecer e espalhamento. Melhor para farm, pior que Rippler contra chefe.</td></tr>
     <tr><td data-label="Ciberdeque"><img class="ico" src="imagens/icones/cw-netwatch-netdriver.png" alt="" loading="lazy">NetWatch Netdriver Mk.1</td><td class="loc" data-label="Onde obter">Qualquer ripperdoc, nível alto</td><td data-label="Quando usar">Alternativa para hacks em área via câmeras.</td></tr>
     <tr><td data-label="Ciberdeque">Militech Paraline</td><td class="loc" data-label="Onde obter">Qualquer ripperdoc</td><td data-label="Quando usar">Se quiser focar em armas smart.</td></tr>
   </table>
+  </div>
+
+  <h3>Variante Raven Microcyber (limpeza de grupo)</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>Use Raven quando</h4>
+      <ul>
+        <li>For limpar bases, crimes reportados e grupos grandes.</li>
+        <li>Você quer jogar em cima de Contágio + Superaquecer.</li>
+        <li>Você aceita ativar Transbordamento para espalhar hacks.</li>
+      </ul>
+    </div>
+    <div class="card red">
+      <h4>Continue no Rippler quando</h4>
+      <ul>
+        <li>For enfrentar chefe, cyberpsycho, MaxTac ou elite.</li>
+        <li>O foco for Esgotamento de Sinapse e dano máximo.</li>
+        <li>Você quer fila previsível, sem propagação acidental.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel green">
+    <p><strong>Loadout Raven:</strong> Raven Microcyber Mk.3, Contágio, Superaquecer, Defeito de Cibernética, Esgotamento de Sinapse, Memória Formatada, Choque Sônico, Ping e Curto-circuito. Arma de apoio: Prototype: Shingen Mark V ou Yinglong.</p>
   </div>
 
   <h3>Prioridade 1 (compre primeiro)</h3>
@@ -805,21 +868,89 @@
 
 <section id="armas">
   <div class="sec-label">// 08</div>
-  <h2>Armas: quais pegar e onde</h2>
+  <h2>Armas smart e tech: quais pegar e como usar</h2>
   <div class="panel cyan">
-    <p>Com a vantagem <strong>Recirculação</strong>, cada kill com arma smart devolve RAM. Sinergia perfeita pra quando a barra zerar.</p>
+    <p>Com <strong>Recirculação</strong>, cada kill com arma smart devolve RAM. Com <strong>Sinergia inteligente</strong>, durante a Turbinagem as smart travam mira rápido e causam mais dano se o alvo estiver hackeado. É a ponte entre Trilha-rede pura e netgunner.</p>
   </div>
-  <p class="chk-note">// Checklist de obtenção</p>
-  <label class="chk weapon"><input type="checkbox" data-id="wp-shingen"><img class="wpimg" src="imagens/icones/wp-shingen.png" alt="SMG smart Prototype Shingen Mark V" loading="lazy"><span class="t"><strong>Prototype: Shingen Mark V</strong> (SMG smart, projéteis explosivos, 3 alvos). <span class="loc">GRÁTIS: contêiner 667, doca externa do Arasaka Industrial Park, Santo Domingo. Entre pelo portão principal, primeira à esquerda, direita depois do prédio. Cuidado com a mina na entrada do contêiner. Não precisa de missão ativa</span></span></label>
-  <label class="chk weapon"><input type="checkbox" data-id="wp-genjiroh"><img class="wpimg" src="imagens/icones/wp-genjiroh.png" alt="Pistola smart Genjiroh" loading="lazy"><span class="t"><strong>Genjiroh</strong> (pistola smart, multi-alvo). <span class="loc">Durante a missão "Pela porta da frente" (Play It Safe, Japantown): no andar 21, porta à direita saindo do elevador, código 2906. Também abre com Habilidade Técnica alta</span></span></label>
-  <label class="chk weapon"><input type="checkbox" data-id="wp-yinglong"><img class="wpimg" src="imagens/icones/wp-yinglong.png" alt="SMG smart Yinglong" loading="lazy"><span class="t"><strong>Yinglong</strong> (SMG smart, dispara EMP). <span class="loc">Spec de criação: drop do líder em "Atividade Suspeita de Crime Organizado" em Wellsprings, Heywood (Denzel Cryer). Depois crie na aba de criação</span></span></label>
-  <label class="chk weapon"><input type="checkbox" data-id="wp-pizdets"><img class="wpimg" src="imagens/icones/wp-pizdets.png" alt="SMG smart Pizdets" loading="lazy"><span class="t"><strong>Pizdets</strong> (SMG smart com silenciador, crítico cresce atirando). <span class="loc">Phantom Liberty: drop do Boris Ribakov no gig "Spy in the Jungle", museu de história natural, Terra Cognita, Dogtown</span></span></label>
-  <label class="chk weapon"><input type="checkbox" data-id="wp-ashura"><img class="wpimg" src="imagens/icones/wp-ashura.png" alt="Sniper smart Ashura" loading="lazy"><span class="t"><strong>Ashura</strong> (sniper smart, dano absurdo). <span class="loc">Lojas de armas de Night City em nível alto, ou drop raro de inimigos</span></span></label>
+
+  <h3>Como fazer o disparo teleguiado funcionar</h3>
+  <ol class="steps">
+    <li>Instale <strong>Smart Link</strong> no slot de mãos, no ripperdoc.</li>
+    <li>Equipe uma arma marcada como <strong>Smart</strong>.</li>
+    <li>Mire até o retículo travar no inimigo.</li>
+    <li>Dispare mantendo a mira. Os projéteis seguem o alvo.</li>
+    <li>Durante a <strong>Turbinagem</strong>, a vantagem <strong>Sinergia inteligente</strong> acelera a trava e melhora o dano em alvo hackeado.</li>
+  </ol>
+  <div class="panel red">
+    <p><strong>Sem Smart Link, não tem mágica.</strong> A arma smart vira uma arma comum com preço de executivo da Arasaka.</p>
+  </div>
+
+  <h3>Smart vs Tech</h3>
+  <div class="tablewrap">
+  <table class="rtable">
+    <tr><th>Tipo</th><th>O que faz</th><th>Uso nesta build</th></tr>
+    <tr><td data-label="Tipo"><strong>Smart</strong></td><td data-label="O que faz">Projéteis teleguiados com Smart Link.</td><td data-label="Uso">Melhor sinergia. Recupera RAM via Recirculação e funciona com Sinergia inteligente.</td></tr>
+    <tr><td data-label="Tipo"><strong>Tech</strong></td><td data-label="O que faz">Carrega tiro, atravessa cobertura e usa perks de Bolt.</td><td data-label="Uso">Boa arma secundária contra inimigo atrás de parede. Não é o eixo principal desta build.</td></tr>
+    <tr><td data-label="Tipo"><strong>Power</strong></td><td data-label="O que faz">Tiro normal e ricochete.</td><td data-label="Uso">Menor sinergia aqui. Use só se gostar muito da arma.</td></tr>
+  </table>
+  </div>
+
+  <h3>Peças que fazem arma smart bater de verdade</h3>
+  <div class="tablewrap">
+  <table class="rtable">
+    <tr><th>Peça</th><th>Onde</th><th>Por que importa</th></tr>
+    <tr><td data-label="Peça"><strong>Smart Link</strong></td><td data-label="Onde">Mãos, ripperdoc</td><td data-label="Por que importa">Libera trava inteligente e melhora dano/crit das smart.</td></tr>
+    <tr><td data-label="Peça"><strong>Recirculação</strong></td><td data-label="Onde">Inteligência 9</td><td data-label="Por que importa">Kill com smart devolve RAM.</td></tr>
+    <tr><td data-label="Peça"><strong>Transferência de trava</strong></td><td data-label="Onde">Inteligência 15</td><td data-label="Por que importa">Mantém a trava ao trocar arma ou alvo.</td></tr>
+    <tr><td data-label="Peça"><strong>Sinergia inteligente</strong></td><td data-label="Onde">Inteligência 20</td><td data-label="Por que importa">Durante Turbinagem, smart trava rápido e bate mais forte em alvo hackeado.</td></tr>
+    <tr><td data-label="Peça"><strong>Kiroshi "Sentry" Optics</strong></td><td data-label="Onde">Rosto, ripperdoc</td><td data-label="Por que importa">Escala com Inteligência e combina com leitura de campo.</td></tr>
+  </table>
+  </div>
+
+  <h3>Armas recomendadas, em ordem</h3>
+  <div class="tablewrap">
+  <table class="rtable">
+    <tr><th>Arma</th><th>Função</th><th>Onde pegar</th></tr>
+    <tr><td data-label="Arma"><strong>Pizdets</strong><br><span class="en">SMG smart, Phantom Liberty</span></td><td data-label="Função">Melhor smart furtiva. Silenciada, crítica cresce em disparo contínuo.</td><td data-label="Onde pegar">Gig <strong>Spy in the Jungle</strong>, Dogtown. Saqueie Boris Ribakov.</td></tr>
+    <tr><td data-label="Arma"><strong>Yinglong</strong><br><span class="en">SMG smart</span></td><td data-label="Função">Melhor controle geral. Chance de EMP, derrete grupo e chefe.</td><td data-label="Onde pegar">Spec em <strong>Living the Big Life</strong>, atividade de crime organizado em Wellsprings. Saqueie Denzel Cryer e crie.</td></tr>
+    <tr><td data-label="Arma"><strong>Prototype: Shingen Mark V</strong><br><span class="en">SMG smart</span></td><td data-label="Função">Explosiva, trava até 3 alvos, ativa combo com Contágio.</td><td data-label="Onde pegar">Contêiner 667 no Arasaka Industrial Park. Cuidado com a mina.</td></tr>
+    <tr><td data-label="Arma"><strong>Genjiroh</strong><br><span class="en">Pistola smart</span></td><td data-label="Função">Boa cedo/mid game, multi-alvo.</td><td data-label="Onde pegar">Missão <strong>Play It Safe</strong>, porta com código 2906, ou Habilidade Técnica alta.</td></tr>
+    <tr><td data-label="Arma"><strong>Ashura</strong><br><span class="en">Sniper smart</span></td><td data-label="Função">Pick de alvo distante e elite isolado.</td><td data-label="Onde pegar">Lojas de armas em nível alto ou drop.</td></tr>
+    <tr><td data-label="Arma"><strong>Warden</strong><br><span class="en">SMG smart comum</span></td><td data-label="Função">Melhor base não icônica, aceita mods.</td><td data-label="Onde pegar">Lojas/drop, especialmente Dogtown.</td></tr>
+  </table>
+  </div>
+
+  <h3>Como aprimorar e jogar com as armas</h3>
+  <ol class="steps">
+    <li>Suba a arma para o maior tier possível: Tier 5, depois 5+ e 5++.</li>
+    <li>Priorize armas icônicas. Elas dependem menos de mod perfeito.</li>
+    <li>Se usar arma comum como Warden, procure mods de carregador, velocidade de trava, crit ou dano.</li>
+    <li>Antes de atirar, aplique <strong>Defeito de Cibernética</strong>. Alvo hackeado apanha mais.</li>
+    <li>Contra grupo: <strong>Contágio</strong>, depois Shingen ou Superaquecer.</li>
+    <li>Contra chefe: <strong>Defeito de Cibernética</strong>, depois Yinglong/Pizdets durante Turbinagem.</li>
+  </ol>
+
+  <h3>Checklist de obtenção</h3>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-shingen"><img class="wpimg" src="imagens/icones/wp-shingen.png" alt="SMG smart Prototype Shingen Mark V" loading="lazy"><span class="t"><strong>Prototype: Shingen Mark V</strong> (SMG smart, projéteis explosivos, 3 alvos). <span class="loc">GRÁTIS: contêiner 667, doca externa do Arasaka Industrial Park, Santo Domingo. Cuidado com a mina</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-genjiroh"><img class="wpimg" src="imagens/icones/wp-genjiroh.png" alt="Pistola smart Genjiroh" loading="lazy"><span class="t"><strong>Genjiroh</strong> (pistola smart, multi-alvo). <span class="loc">Missão "Pela porta da frente" (Play It Safe), andar 21, código 2906</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-yinglong"><img class="wpimg" src="imagens/icones/wp-yinglong.png" alt="SMG smart Yinglong" loading="lazy"><span class="t"><strong>Yinglong</strong> (SMG smart, EMP). <span class="loc">Spec de criação em Wellsprings, Heywood, com Denzel Cryer</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-pizdets"><img class="wpimg" src="imagens/icones/wp-pizdets.png" alt="SMG smart Pizdets" loading="lazy"><span class="t"><strong>Pizdets</strong> (SMG smart com silenciador). <span class="loc">Phantom Liberty: Boris Ribakov no gig "Spy in the Jungle"</span></span></label>
+  <label class="chk weapon"><input type="checkbox" data-id="wp-ashura"><img class="wpimg" src="imagens/icones/wp-ashura.png" alt="Sniper smart Ashura" loading="lazy"><span class="t"><strong>Ashura</strong> (sniper smart). <span class="loc">Lojas de armas em nível alto, ou drop raro</span></span></label>
+
+  <h3>Tech weapons: quando vale</h3>
+  <div class="panel">
+    <p>Leve uma arma tech só como ferramenta contra inimigo atrás de cobertura. Boas opções: <strong>Senkoh LX</strong>, <strong>Quasar</strong> ou algum rifle de precisão tech. Mas não tente transformar tech weapon em plano principal sem investir na árvore de Bolt. Sua Técnica 20 aqui existe para cibernética e Edgerunner. Foco paga dividendos. Dispersão cobra juros.</p>
+  </div>
 </section>
 
 <section id="rotacao">
   <div class="sec-label">// 09</div>
   <h2>Como jogar (rotações)</h2>
+
+  <h3>Ordem dos hacks no ciberdeque</h3>
+  <p>Organize os hacks mais usados no topo da roda. No controle, isso reduz erro e economiza tempo. Ordem recomendada para <strong>Tetratronic Rippler</strong>:</p>
+  <div class="combo"><strong>Rippler, ordem principal</strong><code>1. Defeito de Cibernética -> 2. Esgotamento de Sinapse -> 3. Curto-circuito -> 4. Memória Formatada -> 5. Choque Sônico -> 6. Contágio -> 7. Superaquecer -> 8. Ping</code></div>
+  <div class="combo"><strong>Raven, ordem de área</strong><code>1. Contágio -> 2. Superaquecer -> 3. Defeito de Cibernética -> 4. Esgotamento de Sinapse -> 5. Memória Formatada -> 6. Choque Sônico -> 7. Ping -> 8. Curto-circuito</code></div>
 
   <h3>Início de jogo (níveis 1 a 20)</h3>
   <ol class="steps">
@@ -841,17 +972,40 @@
   <div class="grid">
     <div class="card">
       <h4><img class="ico" src="imagens/icones/qh-detonate-grenade.png" alt="" loading="lazy">Dano máximo (elites/chefes)</h4>
-      <p>Defeito de Cibernética, depois Esgotamento de Sinapse, depois Defeito de Cibernética de novo, e fecha com hack supremo (Detonar granada ou Suicídio).</p>
+      <p><strong>Ordem:</strong> Turbinagem, Defeito de Cibernética, Esgotamento de Sinapse, Defeito de Cibernética, Curto-circuito ou Detonar granada. Se sobrar vida, Yinglong ou Pizdets no alvo hackeado.</p>
     </div>
     <div class="card">
       <h4><img class="ico" src="imagens/icones/qh-memory-wipe.png" alt="" loading="lazy">Stealth total</h4>
-      <p>Memória Formatada (Tier 4+), depois Reiniciar Ópticas, depois Choque Sônico (Tier 5). Ninguém nunca soube que você esteve lá.</p>
+      <p><strong>Ordem:</strong> Memória Formatada Tier 4+, Reiniciar Ópticas, Choque Sônico Tier 5, Esgotamento de Sinapse ou Curto-circuito. Fora de ordem, a rede te acha. Ela não manda convite formal.</p>
     </div>
     <div class="card">
       <h4><img class="ico" src="imagens/icones/qh-contagion.png" alt="" loading="lazy">Área clássico</h4>
-      <p>Contágio num grupo, depois Superaquecer no infectado central. Explosão em cadeia.</p>
+      <p><strong>Ordem:</strong> Ping, Contágio no alvo central, Superaquecer no mesmo alvo. Com Shingen, atire no grupo para aplicar fogo/explosão.</p>
     </div>
   </div>
+
+  <h3>Rotação Raven Microcyber (limpa-sala)</h3>
+  <ol class="steps">
+    <li>Equipe <strong>Raven Microcyber Mk.3</strong>.</li>
+    <li>Ative a <strong>Turbinagem</strong>.</li>
+    <li>Use <strong>Contágio</strong> no alvo central.</li>
+    <li>Use <strong>Superaquecer</strong> para detonar.</li>
+    <li>Use <strong>Defeito de Cibernética</strong> nos sobreviventes.</li>
+    <li>Finalize com <strong>Esgotamento de Sinapse</strong> para manter a Turbinagem.</li>
+  </ol>
+  <div class="panel red">
+    <p>Use Raven em grupo. Contra chefe, volte para Rippler. A arma certa no trabalho errado vira peso morto.</p>
+  </div>
+
+  <h3>Rotação netgunner (hack + smart weapon)</h3>
+  <ol class="steps">
+    <li>Use <strong>Ping</strong> ou scanner para localizar.</li>
+    <li>Aplique <strong>Defeito de Cibernética</strong> no alvo.</li>
+    <li>Ative a <strong>Turbinagem</strong>.</li>
+    <li>Trave mira com <strong>Yinglong</strong>, <strong>Pizdets</strong> ou <strong>Shingen</strong>.</li>
+    <li>Mate com arma smart para recuperar RAM via <strong>Recirculação</strong>.</li>
+    <li>Volte para quickhacks quando a RAM encher.</li>
+  </ol>
 </section>
 
 <section id="ps5">
@@ -889,6 +1043,9 @@
     <a href="https://www.cyberpunk.net/pt-br/news/50047/analise-da-build-trilha-rede-hack-slash" target="_blank" rel="noopener">Build Trilha-rede oficial CDPR</a> ·
     <a href="https://gamestegy.com/post/cyberpunk-2077/698/netrunner-build" target="_blank" rel="noopener">Gamestegy</a> ·
     <a href="https://game8.co/games/Cyberpunk-2077/archives/Builds-Netrunner" target="_blank" rel="noopener">Game8</a> ·
+    <a href="https://game8.co/games/Cyberpunk-2077/archives/Builds-Smart-Weapon" target="_blank" rel="noopener">Game8 Smart Weapons</a> ·
+    <a href="https://www.rpgsite.net/guide/15277-the-best-iconic-smart-weapons-in-cyberpunk-2077-21-favor-an-agile-net-gunner-build" target="_blank" rel="noopener">RPG Site Smart Weapons</a> ·
+    <a href="https://www.rpgsite.net/feature/15004-the-best-cyberdecks-in-cyberpunk-2077-20-are-all-about-your-netrunning-build" target="_blank" rel="noopener">RPG Site Cyberdecks</a> ·
     <a href="https://www.cyberpunk.net/en/news/51794/patch-2-31" target="_blank" rel="noopener">Patch 2.31</a> ·
     <a href="https://support.cdprojektred.com/en/cyberpunk/pc/gameplay/issue/2593/item-tiers-in-loot-and-vendors" target="_blank" rel="noopener">Tiers oficiais (CDPR)</a>
   </p>

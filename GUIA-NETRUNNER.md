@@ -1,4 +1,4 @@
-# Guia Completo: Build Netrunner (Trilha-Rede) — Cyberpunk 2077
+# Guia Completo: Build Netrunner (Trilha-Rede) - Cyberpunk 2077
 
 > Atualizado para o Patch 2.31 (versão mais recente do jogo). Válido para PS5, PS5 Pro, Xbox Series e PC.
 > Passado utilizado: Corporativo (Corpo). Inclui Phantom Liberty, com alternativa para quem não tem a DLC.
@@ -147,7 +147,30 @@ O resto dos pontos de Relíquia vai em Emergency Cloaking (camuflagem) ou nos pe
 |---|---|
 | **Tetratronic Rippler Mk.5** | **Recomendado.** Maior dano de combo, faz upload automático de Reboot Optics e Weapon Glitch ao ativar Overclock |
 | Netwatch Netdriver Mk.1 | Alternativa para quem joga muito via câmeras (hacks em área via câmera) |
+| Raven Microcyber Mk.3 | Variante para limpar grupos rápido com Contagion, Overheat e espalhamento |
 | Militech Paraline | Se quiser focar em armas smart |
+
+### Variante Raven Microcyber (limpeza de grupo)
+
+Use a **Raven Microcyber Mk.3** quando o objetivo for apagar bases, NCPD hustles e grupos grandes sem depender de chefe ou alvo único. Ela aumenta a distância de propagação dos quickhacks e faz os hacks que espalham entrarem mais rápido. Na prática: excelente para Contagion + Overheat, menos forte que o Rippler contra elite/chefe.
+
+**Quando trocar para Raven:**
+- Farming de XP, crimes reportados, gigs com muita gente junta.
+- Você quer usar **Contagion** como hack principal.
+- Você aceita pegar **Spillover** e perder um pouco do controle fino da fila.
+
+**Quando continuar no Rippler:**
+- Boss, cyberpsychos, MaxTac, Adam Smasher, elite com muita vida.
+- Você quer dano máximo com Synapse Burnout e Cyberware Malfunction.
+- Você quer sequência limpa, previsível e sem propagação acidental.
+
+**Loadout Raven:**
+- Cyberdeck: Raven Microcyber Mk.3
+- Quickhacks: Contagion, Overheat, Cyberware Malfunction, Synapse Burnout, Memory Wipe, Sonic Shock, Ping, Short Circuit
+- Arma de apoio: Prototype: Shingen Mark V ou Yinglong
+- Perk opcional: Spillover
+
+Veredito: **Raven não substitui a build principal. Ela vira um segundo modo.** Rippler é bisturi. Raven é limpa-trilho.
 
 ### Prioridade 1 (compre primeiro)
 
@@ -198,18 +221,92 @@ O resto dos pontos de Relíquia vai em Emergency Cloaking (camuflagem) ou nos pe
 
 ---
 
-## 7. Armas (para quando a RAM acabar)
+## 7. Armas smart e tech (para quando a RAM acabar)
 
-Com o perk **Recirculation**, cada kill com arma smart devolve RAM. Sinergia perfeita.
+Com o perk **Recirculation**, cada kill com arma smart devolve RAM. Com **Smart Synergy**, durante o Overclock as smart travam mira instantaneamente e causam mais dano se o alvo estiver afetado por quickhack. É aqui que a build deixa de ser "hacker sem arma" e vira netgunner quando precisa.
 
-- **SMGs Smart:** Yinglong (a melhor, dispara EMP), Pizdets (silenciada, Phantom Liberty), Warden
-- **Pistolas Smart:** Genjiroh (multi-alvo), Crimestopper, Ogou
-- **Sniper Smart:** Ashura (dano absurdo) ou Yasha
-- **Icônica especial:** Prototype: Shingen Mark V (SMG smart com munição explosiva)
+### Como fazer disparo teleguiado funcionar
+
+Arma smart só fica realmente teleguiada com cyberware de mão:
+
+1. Instale **Smart Link** no ripperdoc.
+2. Use uma arma marcada como **Smart**.
+3. Mire até o retículo travar no alvo.
+4. Dispare mantendo a mira. Os projéteis seguem o alvo.
+5. Durante **Overclock**, o perk **Smart Synergy** acelera ou praticamente elimina o tempo de trava.
+
+Sem Smart Link, a arma smart vira praticamente uma arma comum com autoestima cara.
+
+### Smart vs Tech
+
+| Tipo | O que faz | Quando usar nesta build |
+|---|---|---|
+| **Smart** | Projéteis teleguiados com Smart Link | Melhor sinergia com Netrunner. Recupera RAM via Recirculation e funciona com Smart Synergy |
+| **Tech** | Carrega tiro, atravessa cobertura e usa perks de Bolt | Boa arma secundária contra inimigo atrás de parede, mas exige perks próprios de Técnica |
+| Power | Tiro normal e ricochete | Menor sinergia com esta build |
+
+Para esta build, o foco é **Smart**. Tech é secundário, não eixo principal.
+
+### Perks e cyberware para armas smart
+
+| Peça | Onde | Por que importa |
+|---|---|---|
+| **Smart Link** | Mãos, ripperdoc | Libera trava inteligente e melhora crit/dano smart |
+| **Recirculation** | Inteligência 9 | Kill com smart devolve RAM |
+| **Target Lock Transfer** | Inteligência 15 | Mantém trava ao trocar de arma ou alvo |
+| **Smart Synergy** | Inteligência 20 | Durante Overclock, smart trava rápido e bate mais forte em alvo hackeado |
+| **Kiroshi "Sentry" Optics** | Rosto | Escala com Inteligência e combina com leitura de campo |
+| **Microgenerator** | Mãos, opcional | Alternativa ao Smart Link se você abandonar smart, mas para esta build eu não recomendo |
+
+### Armas recomendadas, em ordem
+
+| Arma | Tipo | Função | Onde pegar |
+|---|---|---|---|
+| **Pizdets** | SMG smart, Phantom Liberty | Melhor smart furtiva. Silenciada, escala em disparo contínuo | Gig **Spy in the Jungle**, Dogtown. Saqueie Boris Ribakov |
+| **Yinglong** | SMG smart | Melhor controle geral. Chance de EMP, derrete grupo e chefe | Spec em **Living the Big Life**, NCPD Suspected Organized Crime Activity, Wellsprings. Saqueie Denzel Cryer e crie |
+| **Prototype: Shingen Mark V** | SMG smart | Explosiva, trava até 3 alvos, ativa combo com Contagion | Contêiner 667 no Arasaka Industrial Park. Cuidado com a mina |
+| **Genjiroh** | Pistola smart | Boa opção cedo/mid game, multi-alvo | Missão **Play It Safe**, porta com código 2906, ou Tech alta |
+| **Ashura** | Sniper smart | Pick de alvo distante, bom contra elite isolado | Lojas de armas em nível alto ou drop |
+| **Warden** | SMG smart comum | Melhor base não icônica, aceita mods | Lojas/drop, especialmente Dogtown |
+| **Hercules 3AX** | AR smart, Phantom Liberty | Bom híbrido com explosão/veneno | Phantom Liberty, missão de Dogtown |
+
+### Como "buildar" arma smart
+
+1. Suba a arma para o maior tier possível: Tier 5, depois 5+ e 5++.
+2. Priorize armas icônicas. Elas não dependem tanto de mod certo.
+3. Se usar arma comum como **Warden**, priorize mods que aumentem carregador, velocidade de trava, crit ou dano.
+4. Use quickhack antes de atirar. Qualquer hack já melhora a luta, mas **Cyberware Malfunction** é o melhor setup.
+5. Contra grupo: **Contagion** primeiro, depois Shingen ou Overheat.
+6. Contra chefe: **Cyberware Malfunction** antes, depois descarregue Yinglong/Pizdets enquanto Overclock está ativo.
+
+### Tech weapons: quando vale
+
+Se você quiser levar uma arma tecnológica só para emergência, escolha uma:
+
+- **Tech Precision Rifle** ou **Tech Revolver**: para inimigo atrás de cobertura.
+- **Senkoh LX**: SMG tech, boa se você investir em perks de Bolt.
+- **Quasar**: revolver tech, forte com Bolt.
+
+Mas a regra é simples: se não for investir em perks de Tech Weapon na árvore de Técnica, **não tente transformar tech weapon em plano principal**. Sua Técnica 20 aqui existe para cyberware e Edgerunner, não para virar engenheiro de rifle. Foco paga dividendos. Dispersão cobra juros.
 
 ---
 
 ## 8. Como jogar (rotações)
+
+### Ordem dos hacks no ciberdeque
+
+Organize os hacks mais usados no topo da roda, porque no controle isso economiza tempo e erro. Ordem sugerida:
+
+1. **Cyberware Malfunction**
+2. **Synapse Burnout**
+3. **Short Circuit**
+4. **Memory Wipe**
+5. **Sonic Shock**
+6. **Contagion**
+7. **Overheat**
+8. **Ping**
+
+Se estiver usando Raven, suba **Contagion** e **Overheat** para as posições 1 e 2. Se estiver usando Rippler, mantenha Cyberware Malfunction e Synapse Burnout no topo.
 
 ### Início de jogo (níveis 1 a 20)
 1. **Ping** na primeira pessoa/dispositivo da área para mapear todo mundo.
@@ -225,13 +322,58 @@ Com o perk **Recirculation**, cada kill com arma smart devolve RAM. Sinergia per
 5. Repita até a sala inteira apagar. Com Queue Mastery, o último hack da fila bate com dano multiplicado.
 
 ### Rotação de dano máximo (elites/chefes)
-Cyberware Malfunction → Synapse Burnout → Cyberware Malfunction → hack supremo (Detonate Grenade ou Suicide).
+
+Ordem:
+
+1. Ative **Overclock**.
+2. **Cyberware Malfunction**
+3. **Synapse Burnout**
+4. **Cyberware Malfunction**
+5. **Short Circuit** ou **Detonate Grenade**
+6. Se o alvo continuar vivo: descarregue **Yinglong** ou **Pizdets** enquanto o alvo está hackeado.
+
+Por que funciona: Cyberware Malfunction ativa Embedded Exploit e aumenta dano. Synapse Burnout mata ou estende Overclock. Short Circuit escala com stacks de Cyberware Malfunction.
 
 ### Rotação stealth total
-Memory Wipe (Tier 4+) → Reboot Optics → Sonic Shock (Tier 5). Ninguém nunca soube que você esteve lá.
+
+Ordem:
+
+1. **Memory Wipe** Tier 4+
+2. **Reboot Optics**
+3. **Sonic Shock** Tier 5
+4. **Synapse Burnout** ou **Short Circuit**
+
+Memory Wipe primeiro torna os hacks seguintes não rastreáveis. Se fizer fora de ordem, a rede te acha. E a rede não manda convite formal.
 
 ### Combo de área clássico
-Contagion em um grupo → Overheat no infectado central → explosão em cadeia.
+
+Ordem:
+
+1. **Ping** para mapear.
+2. **Contagion** no inimigo central.
+3. **Overheat** no mesmo alvo ou no alvo mais agrupado.
+4. Se estiver com **Prototype: Shingen Mark V**, atire no grupo para aplicar fogo/explosão.
+5. Com Raven, deixe espalhar. Com Rippler, use como combo pontual.
+
+### Rotação Raven Microcyber (limpa-sala)
+
+1. Equipe **Raven Microcyber Mk.3**.
+2. Ative **Overclock**.
+3. **Contagion** no alvo central.
+4. **Overheat** para detonar.
+5. **Cyberware Malfunction** nos sobreviventes.
+6. **Synapse Burnout** para finalizar e manter Overclock.
+
+Use isso em grupo. Contra chefe, volte para Rippler.
+
+### Rotação netgunner (hack + smart weapon)
+
+1. **Ping** ou scanner para localizar.
+2. **Cyberware Malfunction** no alvo.
+3. Ative **Overclock**.
+4. Trave mira com **Yinglong**, **Pizdets** ou **Shingen**.
+5. Mate com arma smart para recuperar RAM via Recirculation.
+6. Volte para quickhacks quando a RAM encher.
 
 ---
 
@@ -262,6 +404,9 @@ Contagion em um grupo → Overheat no infectado central → explosão em cadeia.
 
 - [Gamestegy: Best Netrunner Build (10K+ Combo Damage)](https://gamestegy.com/post/cyberpunk-2077/698/netrunner-build)
 - [Game8: Best Netrunner Build (Quickhack Build)](https://game8.co/games/Cyberpunk-2077/archives/Builds-Netrunner)
+- [Game8: Best Smart Weapon Build](https://game8.co/games/Cyberpunk-2077/archives/Builds-Smart-Weapon)
+- [RPG Site: Best Iconic Smart Weapons](https://www.rpgsite.net/guide/15277-the-best-iconic-smart-weapons-in-cyberpunk-2077-21-favor-an-agile-net-gunner-build)
+- [RPG Site: Best Cyberdecks](https://www.rpgsite.net/feature/15004-the-best-cyberdecks-in-cyberpunk-2077-20-are-all-about-your-netrunning-build)
 - [CD Projekt RED: Update 2.3 Patch Notes](https://www.cyberpunk.net/en/news/51674/update-2-3-patch-notes)
 - [CD Projekt RED: Patch 2.31](https://www.cyberpunk.net/en/news/51794/patch-2-31)
 - [GNL Magazine: Update 2.3 Netrunner Build 2026](https://www.gnlmagazine.com/article/cyberpunk-2077-update-23-netrunner-build-2026)
